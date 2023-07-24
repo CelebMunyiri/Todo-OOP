@@ -122,7 +122,7 @@ class Todo {
         const li = document.createElement('li');
     li.innerHTML = `
       <span class="title">${task.getTitle()}</span><span> - ${task.getDescription()} - ${task.getDeadline()}</span>
-      <button onclick="completeTask(${index})"><iconify-icon icon="carbon:task-complete" style="color: black;" width="35" height="35"></iconify-icon></button>
+      <button onclick="completeTask(${index})"><iconify-icon icon="fluent-mdl2:completed" style="color: gray;" width="35" height="35"></iconify-icon></button>
       <button id="removeTask" onclick="removeTask()"><iconify-icon icon="iwwa:delete" style="color: darkblue;"></iconify-icon></iconify-icon></button>
     `;
     uncompletedTasksList.appendChild(li);
@@ -137,7 +137,7 @@ class Todo {
       li.innerHTML = `
         <span class="completed">${task.getTitle()} - ${task.getDescription()} - ${task.getDeadline()}</span>
         <span class="status-info">${daysEarly > 0 ? `Completed ${daysEarly} days early.` : (daysLate > 0 ? `Completed ${daysLate} days late.` : 'Completed on time.')}</span>
-        <button onclick="removeTask(${index})">Delete</button>
+        <button onclick="removeTask(${index})"><iconify-icon icon="iwwa:delete" style="color: blue;" width="20" height="20"></iconify-icon></button>
       <button>Update</button>
         `;
       completedTasksList.appendChild(li);
