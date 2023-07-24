@@ -62,9 +62,9 @@ class Todo {
       this._tasks.push(task);
     }
     updateTask(index,title,description,deadline){
-      this.tasksArray[index].title=title;
-      this.tasksArray[index].description=description
-      this.tasksArray[index].deadline=deadline
+      this._tasks[index].title=title;
+      this._tasks[index].description=description
+      this._tasks[index].deadline=deadline
       this.saveTasksToLocalStorage()
     }
   
@@ -104,9 +104,9 @@ class Todo {
   
   function updateTask(index){
     const taskk=taskManager.getUncompletedTasks()[index]
-   const newTitle=prompt('Enter New Title:',taskk.title)
-   const newDescription=prompt('Enter New Description:',taskk.description)
-   const newDeadline=prompt('Enter New Deadline:',taskk.deadline)
+   const newTitle=prompt('Enter New Title:',taskk.title);
+   const newDescription=prompt('Enter New Description:',taskk.description);
+   const newDeadline=prompt('Enter New Deadline:',taskk.deadline);
 
    if(newTitle !==null && newDescription !==null && newDeadline !==null){
     taskManager.updateTask(index,newTitle,newDescription,newDeadline);
