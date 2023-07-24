@@ -28,22 +28,20 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-  }
   
-  .task-form input,
-  .task-form button {
-    padding: 8px;
   }
-  
   .task-form button {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #063c76;
+    color: rgb(246, 242, 242);
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    width: 50px;
   }
   
+  .task-form input{
+    height: 30px;
+  }
   .task-list {
     margin-top: 20px;
   }
@@ -58,11 +56,21 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 8px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid rgb(235, 232, 232);
   }
   
   .completed {
     text-decoration: line-through;
     color:gray;
   }
-  
+  @media screen and (max-width:700px) {
+    .container{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .task-form{
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
