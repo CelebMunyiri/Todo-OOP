@@ -122,7 +122,7 @@ class Todo {
         const li = document.createElement('li');
     li.innerHTML = `
       <span class="title">${task.getTitle()}</span><span> - ${task.getDescription()} - ${task.getDeadline()}</span>
-      <button onclick="completeTask(${index})">Complete</button>
+      <button onclick="completeTask(${index})"><iconify-icon icon="carbon:task-complete" style="color: black;" width="35" height="35"></iconify-icon></button>
       <button id="removeTask" onclick="removeTask()"><iconify-icon icon="iwwa:delete" style="color: darkblue;"></iconify-icon></iconify-icon></button>
     `;
     uncompletedTasksList.appendChild(li);

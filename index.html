@@ -9,7 +9,11 @@
 </head>
 <body>
   <div class="container">
-    <h1>Task Manager</h1>
+    <div class="header">
+      <h1> My Tasks</h1> 
+      <iconify-icon icon="et:profile-male" style="color: gray;" width="45" height="45"></iconify-icon>
+    </div>
+   
   
     <div class="task-form">
       <input type="text" id="title" placeholder="Taks Name">
@@ -18,10 +22,16 @@
       <button id="addTask">Add Task</button>
     </div>
     <div class="task-list">
-      <h2>Uncompleted Tasks</h2>
-      <ul id="uncompleted-tasks"></ul>
-      <h2>Completed Tasks</h2>
-      <ul id="completed-tasks"></ul>
+      <div class="uncomplete">
+        <h2>Uncompleted Tasks</h2>
+        <ul id="uncompleted-tasks"></ul>
+      </div>
+      
+      <div class="complete">
+        <h2>Completed Tasks</h2>
+        <ul id="completed-tasks"></ul>
+      </div>
+      
     </div>
   </div>
   <script src="app.js"></script>
