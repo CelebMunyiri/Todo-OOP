@@ -128,9 +128,7 @@ class Todo {
     uncompletedTasksList.appendChild(li);
     });
 
-   
   
-    // loadTasksFromLocalStorage();
     completedTasks.forEach((task, index) => {
       const li = document.createElement('li');
       const daysEarly = task.completeTaskOnTime();
@@ -140,7 +138,8 @@ class Todo {
         <span class="completed">${task.getTitle()} - ${task.getDescription()} - ${task.getDeadline()}</span>
         <span class="status-info">${daysEarly > 0 ? `Completed ${daysEarly} days early.` : (daysLate > 0 ? `Completed ${daysLate} days late.` : 'Completed on time.')}</span>
         <button onclick="removeTask(${index})">Delete</button>
-      `;
+      <button>Update</button>
+        `;
       completedTasksList.appendChild(li);
     });
   }
