@@ -123,9 +123,9 @@ class Todo {
     li.innerHTML = `
       <span>${task.getTitle()} - ${task.getDescription()} - ${task.getDeadline()}</span>
       <button onclick="completeTask(${index})">Complete</button>
-      <button id="removeTask">Delete</button>
+      <button id="removeTask" onclick="removeTask()">Delete</button>
     `;
-    const removeTask=document.getElementById('removeTask')
+    // const removeTask=document.getElementById('removeTask')
     uncompletedTasksList.appendChild(li);
     });
 
@@ -162,7 +162,7 @@ class Todo {
   }
   let addTaskBtn=document.getElementById('addTask')
   addTaskBtn.addEventListener('click',()=>addTask())
-  removeTask.addEventListener('click',()=>removeTask(`${index}`))
+  // removeTask.addEventListener('click',()=>removeTask(`${index}`))
   displayTasks();
   
   
