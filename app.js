@@ -94,11 +94,13 @@ class Todo {
     const task = new Todo(title, description, deadline);
     taskManager.addTask(task);
     displayTasks();
+    saveTasksToLocalStorage()
   }
   
   function completeTask(index) {
     taskManager.completeTask(index);
     displayTasks();
+    saveTasksToLocalStorage()
   }
   
   function removeTask(index) {
@@ -126,7 +128,25 @@ class Todo {
     const removeTask=document.getElementById('removeTask')
     uncompletedTasksList.appendChild(li);
     });
+
+    function saveTasksToLocalStorage(){
+      localStorage.setItem('tasks', JSON.stringify(taskManager._tasks))
+    }
+
+    function loadTasksFromLocalStorage() {
+      const savedTasks = localStorage.getItem('tasks');
+      if (savedTasks) {
+        const tasksArray = JSON.parse(savedTasks);
+        tasksArray.forEach((taskData) => {
+          const task = new Todo(taskData._title, taskData._description, taskData._deadline);
+          task.setCompleted(taskData._completed);
+          task._completionDate = taskData._completionDate ? new Date(taskData._completionDate) : null;
+          taskManager.addTask(task);
+        });
+      }
+    }
   
+    loadTasksFromLocalStorage();
     completedTasks.forEach((task, index) => {
       const li = document.createElement('li');
       const daysEarly = task.completeTaskOnTime();
