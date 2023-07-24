@@ -1,32 +1,15 @@
 'use strict'
-// class ToDo{
-//     constructor(taskName,description,deadline){
-//         this._title=title;
-//         this._description=description;
-//         this._deadline=deadline
-//     }
-// }
-// Task Class
-// class Todo {
-//     constructor(title, description, deadline) {
-//       this._title = title;
-//       this._description = description;
-//       this._deadline = new Date(deadline); // Convert deadline to Date object
-//       this._completed = false;
-//       this._completionDate = null;
-//     }
-  
 
 class Todo {
     constructor(title, description, deadline) {
       this._title = title;
       this._description = description;
-      this._deadline = new Date(deadline); // Convert deadline to Date object
+      this._deadline = new Date(deadline);
       this._completed = false;
       this._completionDate = null;
     }
   
-    // Getter methods
+  
     getTitle() {
       return this._title;
     }
@@ -36,20 +19,20 @@ class Todo {
     }
   
     getDeadline() {
-      return this._deadline.toISOString().split('T')[0]; // Convert deadline back to string
+      return this._deadline.toISOString().split('T')[0];
     }
   
     isCompleted() {
       return this._completed;
     }
   
-    // Setter method
+  
     setCompleted(completed) {
       this._completed = completed;
       this._completionDate = completed ? new Date() : null;
     }
   
-    // Method to check if task was completed on time and get the number of days early
+
     completeTaskOnTime() {
       if (this._completed && this._completionDate <= this._deadline) {
         const diffInTime = this._deadline.getTime() - this._completionDate.getTime();
@@ -59,7 +42,7 @@ class Todo {
       return 0;
     }
   
-    // Method to check if task was completed late and get the number of days late
+
     completeTaskLate() {
       if (this._completed && this._completionDate > this._deadline) {
         const diffInTime = this._completionDate.getTime() - this._deadline.getTime();
@@ -69,34 +52,28 @@ class Todo {
       return 0;
     }
   }
-  
-  // Task Manager
+
   class TaskManager {
     constructor() {
       this._tasks = [];
     }
-  
-    // Add task to the list
+
     addTask(task) {
       this._tasks.push(task);
     }
   
-    // Remove task from the list
     removeTask(index) {
       this._tasks.splice(index, 1);
     }
   
-    // Mark task as completed
     completeTask(index) {
       this._tasks[index].setCompleted(true);
     }
   
-    // Get completed tasks
     getCompletedTasks() {
       return this._tasks.filter((task) => task.isCompleted());
     }
   
-    // Get uncompleted tasks
     getUncompletedTasks() {
       return this._tasks.filter((task) => !task.isCompleted());
     }
@@ -144,10 +121,10 @@ class Todo {
     li.innerHTML = `
       <span>${task.getTitle()} - ${task.getDescription()} - ${task.getDeadline()}</span>
       <button onclick="completeTask(${index})">Complete</button>
-      <button onclick="removeTask(${index})">Delete</button>
+      <button id="removeTask">Delete</button>
     `;
+    const removeTask=document.getElementById('removeTask')
     uncompletedTasksList.appendChild(li);
-      // ... (rest of the code for displaying uncompleted tasks remains the same)
     });
   
     completedTasks.forEach((task, index) => {
@@ -163,7 +140,9 @@ class Todo {
       completedTasksList.appendChild(li);
     });
   }
-  
+  let addTaskBtn=document.getElementById('addTask')
+  addTaskBtn.addEventListener('click',()=>addTask())
+  removeTask.addEventListener('click',()=>removeTask(`${index}`))
   displayTasks();
   
   

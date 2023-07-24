@@ -74,6 +74,6 @@ body {
   
   .completed {
     text-decoration: line-through;
-    color: #777;
+    color:gray;
   }
   
