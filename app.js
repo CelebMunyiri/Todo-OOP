@@ -121,9 +121,9 @@ class Todo {
     uncompletedTasks.forEach((task, index) => {
         const li = document.createElement('li');
     li.innerHTML = `
-      <span>${task.getTitle()} - ${task.getDescription()} - ${task.getDeadline()}</span>
+      <span class="title">${task.getTitle()}</span><span> - ${task.getDescription()} - ${task.getDeadline()}</span>
       <button onclick="completeTask(${index})">Complete</button>
-      <button id="removeTask" onclick="removeTask()">Delete</button>
+      <button id="removeTask" onclick="removeTask()"><iconify-icon icon="iwwa:delete" style="color: darkblue;"></iconify-icon></iconify-icon></button>
     `;
     uncompletedTasksList.appendChild(li);
     });
