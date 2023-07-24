@@ -125,7 +125,6 @@ class Todo {
       <button onclick="completeTask(${index})">Complete</button>
       <button id="removeTask" onclick="removeTask()">Delete</button>
     `;
-    // const removeTask=document.getElementById('removeTask')
     uncompletedTasksList.appendChild(li);
     });
 
@@ -162,7 +161,6 @@ class Todo {
   }
   let addTaskBtn=document.getElementById('addTask')
   addTaskBtn.addEventListener('click',()=>addTask())
-  // removeTask.addEventListener('click',()=>removeTask(`${index}`))
   displayTasks();
   
   
