@@ -87,7 +87,7 @@ class Todo {
     const deadline = document.getElementById('deadline').value;
   
     if (title === '' || description === '' || deadline === '') {
-      alert('Please fill all the fields.');
+      alert('Yoh fill all the fields.');
       return;
     }
   
