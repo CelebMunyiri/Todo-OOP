@@ -61,6 +61,12 @@ class Todo {
     addTask(task) {
       this._tasks.push(task);
     }
+    updateTask(index,title,description,deadline){
+      this.tasksArray[index].title=title;
+      this.tasksArray[index].description=description
+      this.tasksArray[index].deadline=deadline
+      this.saveTasksToLocalStorage()
+    }
   
     removeTask(index) {
       this._tasks.splice(index, 1);
@@ -90,13 +96,24 @@ class Todo {
       alert('Yoh fill all the fields.');
       return;
     }
-  
     const task = new Todo(title, description, deadline);
     taskManager.addTask(task);
     displayTasks();
     saveTasksToLocalStorage()
   }
   
+  function updateTask(index){
+    const taskk=taskManager.getUncompletedTasks()[index]
+   const newTitle=prompt('Enter New Title:',taskk.title)
+   const newDescription=prompt('Enter New Description:',taskk.description)
+   const newDeadline=prompt('Enter New Deadline:',taskk.deadline)
+
+   if(newTitle !==null && newDescription !==null && newDeadline !==null){
+    taskManager.updateTask(index,newTitle,newDescription,newDeadline);
+    displayTasks()
+   }
+  
+  }
   function completeTask(index) {
     taskManager.completeTask(index);
     displayTasks();
@@ -122,9 +139,10 @@ class Todo {
         const li = document.createElement('li');
     li.innerHTML = `
       <span class="title">${task.getTitle()}</span><span> - ${task.getDescription()} - ${task.getDeadline()}</span>
-      <button onclick="completeTask(${index})"><iconify-icon icon="fluent-mdl2:completed" style="color: gray;" width="35" height="35"></iconify-icon></button>
+      <button onclick="completeTask(${index})"><iconify-icon icon="teenyicons:tick-outline" style="color: gray;" width="25" height="25"></iconify-icon></button>
       <button id="removeTask" onclick="removeTask()"><iconify-icon icon="iwwa:delete" style="color: darkblue;"></iconify-icon></iconify-icon></button>
-    `;
+    <button onclick="updateTask(${index})">update</button>
+      `;
     uncompletedTasksList.appendChild(li);
     });
 
