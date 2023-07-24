@@ -128,24 +128,9 @@ class Todo {
     uncompletedTasksList.appendChild(li);
     });
 
-    function saveTasksToLocalStorage(){
-      localStorage.setItem('tasks', JSON.stringify(taskManager._tasks))
-    }
-
-    function loadTasksFromLocalStorage() {
-      const savedTasks = localStorage.getItem('tasks');
-      if (savedTasks) {
-        const tasksArray = JSON.parse(savedTasks);
-        tasksArray.forEach((taskData) => {
-          const task = new Todo(taskData._title, taskData._description, taskData._deadline);
-          task.setCompleted(taskData._completed);
-          task._completionDate = taskData._completionDate ? new Date(taskData._completionDate) : null;
-          taskManager.addTask(task);
-        });
-      }
-    }
+   
   
-    loadTasksFromLocalStorage();
+    // loadTasksFromLocalStorage();
     completedTasks.forEach((task, index) => {
       const li = document.createElement('li');
       const daysEarly = task.completeTaskOnTime();
@@ -159,8 +144,27 @@ class Todo {
       completedTasksList.appendChild(li);
     });
   }
+
+  function saveTasksToLocalStorage(){
+    localStorage.setItem('tasks', JSON.stringify(taskManager._tasks))
+  }
+
+  function loadTasksFromLocalStorage() {
+    const savedTasks = localStorage.getItem('tasks');
+    if (savedTasks) {
+      const tasksArray = JSON.parse(savedTasks);
+      tasksArray.forEach((taskData) => {
+        const task = new Todo(taskData._title, taskData._description, taskData._deadline);
+        task.setCompleted(taskData._completed);
+        task._completionDate = taskData._completionDate ? new Date(taskData._completionDate) : null;
+        taskManager.addTask(task);
+      });
+    }
+  }
+
   let addTaskBtn=document.getElementById('addTask')
   addTaskBtn.addEventListener('click',()=>addTask())
+  loadTasksFromLocalStorage()
   displayTasks();
   
   
