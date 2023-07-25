@@ -62,10 +62,24 @@ class Todo {
       this._tasks.push(task);
     }
     updateTask(index,title,description,deadline){
-      this._tasks[index].title=title;
-      this._tasks[index].description=description
-      this._tasks[index].deadline=deadline
-      this.saveTasksToLocalStorage()
+      const taskk=this._tasks[index]
+
+      if(!taskk){
+        console.error('Task not found');
+        return;
+      }
+      const currentDate=new Date();
+      const selectDate=new Date(deadline);
+
+      if(selectDate<currentDate){
+        console.error('Cannot be before current Date');
+        return;
+      }
+      taskk._title = title;
+    taskk._description = description;
+    taskk._deadline = new Date(deadline);
+    this.saveTasksToLocalStorage();
+
     }
   
     removeTask(index) {
@@ -86,27 +100,39 @@ class Todo {
   }
   
   const taskManager = new TaskManager(); 
-  
+
   function addTask() {
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
-    const deadline = document.getElementById('deadline').value;
+    const deadlineInput = document.getElementById('deadline');
+    const deadline = deadlineInput.value;
   
     if (title === '' || description === '' || deadline === '') {
-      alert('Yoh fill all the fields.');
+      alert('You must fill all the fields.');
       return;
     }
+  
+    const currentDate = new Date();
+    const selectedDate = new Date(deadline);
+  
+    if (selectedDate < currentDate) {
+      alert('Deadline date cannot be before the current date.');
+      return;
+    }
+  
     const task = new Todo(title, description, deadline);
     taskManager.addTask(task);
     displayTasks();
-    saveTasksToLocalStorage()
+    saveTasksToLocalStorage();
   }
   
+ 
+  
   function updateTask(index){
-    const taskk=taskManager.getUncompletedTasks()[index]
-   const newTitle=prompt('Enter New Title:',taskk.title);
-   const newDescription=prompt('Enter New Description:',taskk.description);
-   const newDeadline=prompt('Enter New Deadline:',taskk.deadline);
+    const taskk=taskManager.getUncompletedTasks()[index];
+   const newTitle=prompt('Enter New Title:',taskk.getTitle());
+   const newDescription=prompt('Enter New Description:',taskk.getDescription());
+   const newDeadline=prompt('Enter New Deadline:',taskk.getDeadline());
 
    if(newTitle !==null && newDescription !==null && newDeadline !==null){
     taskManager.updateTask(index,newTitle,newDescription,newDeadline);
@@ -117,12 +143,13 @@ class Todo {
   function completeTask(index) {
     taskManager.completeTask(index);
     displayTasks();
-    saveTasksToLocalStorage()
+    
   }
   
   function removeTask(index) {
     taskManager.removeTask(index);
     displayTasks();
+  
   }
   
   function displayTasks() {
@@ -157,7 +184,7 @@ class Todo {
         <span class="completed">${task.getTitle()} - ${task.getDescription()} - ${task.getDeadline()}</span>
         <span class="status-info">${daysEarly > 0 ? `Completed ${daysEarly} days early.` : (daysLate > 0 ? `Completed ${daysLate} days late.` : 'Completed on time.')}</span>
        <div> <button onclick="removeTask(${index})"><iconify-icon icon="iwwa:delete" style="color: blue;"></iconify-icon></button>
-      <button>Update</button></div>
+      
         `;
       completedTasksList.appendChild(li);
     });
