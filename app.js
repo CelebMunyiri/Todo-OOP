@@ -140,7 +140,7 @@ class Todo {
     li.innerHTML = `
     <div class="btns">
       <span class="title">${task.getTitle()}</span><span> - ${task.getDescription()} - ${task.getDeadline()}</span>
-      <button onclick="completeTask(${index})"><iconify-icon icon="teenyicons:tick-outline" style="color: gray;" width="25" height="25"></iconify-icon></button>
+      <button onclick="completeTask(${index})"><iconify-icon icon="teenyicons:tick-outline" style="color: gray;"></iconify-icon></button>
       <button id="removeTask" onclick="removeTask()"><iconify-icon icon="iwwa:delete" style="color: darkblue;"></iconify-icon></iconify-icon></button>
     <button onclick="updateTask(${index})">update</button> </div>
       `;
@@ -156,8 +156,8 @@ class Todo {
       li.innerHTML = `
         <span class="completed">${task.getTitle()} - ${task.getDescription()} - ${task.getDeadline()}</span>
         <span class="status-info">${daysEarly > 0 ? `Completed ${daysEarly} days early.` : (daysLate > 0 ? `Completed ${daysLate} days late.` : 'Completed on time.')}</span>
-        <button onclick="removeTask(${index})"><iconify-icon icon="iwwa:delete" style="color: blue;" width="20" height="20"></iconify-icon></button>
-      <button>Update</button>
+       <div> <button onclick="removeTask(${index})"><iconify-icon icon="iwwa:delete" style="color: blue;"></iconify-icon></button>
+      <button>Update</button></div>
         `;
       completedTasksList.appendChild(li);
     });
