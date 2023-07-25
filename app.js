@@ -85,7 +85,7 @@ class Todo {
     }
   }
   
-  const taskManager = new TaskManager(); // Instantiate TaskManager
+  const taskManager = new TaskManager(); 
   
   function addTask() {
     const title = document.getElementById('title').value;
@@ -138,10 +138,11 @@ class Todo {
     uncompletedTasks.forEach((task, index) => {
         const li = document.createElement('li');
     li.innerHTML = `
+    <div class="btns">
       <span class="title">${task.getTitle()}</span><span> - ${task.getDescription()} - ${task.getDeadline()}</span>
       <button onclick="completeTask(${index})"><iconify-icon icon="teenyicons:tick-outline" style="color: gray;" width="25" height="25"></iconify-icon></button>
       <button id="removeTask" onclick="removeTask()"><iconify-icon icon="iwwa:delete" style="color: darkblue;"></iconify-icon></iconify-icon></button>
-    <button onclick="updateTask(${index})">update</button>
+    <button onclick="updateTask(${index})">update</button> </div>
       `;
     uncompletedTasksList.appendChild(li);
     });
