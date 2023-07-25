@@ -46,7 +46,7 @@ body {
   }
   .task-form button {
     
-    color: rgb(26, 84, 26);
+    color: rgb(20, 5, 48);
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -76,7 +76,6 @@ body {
   }
   
   .completed {
-    text-decoration: line-through;
     color:gray;
     height: 50%;
    
