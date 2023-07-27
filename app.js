@@ -143,7 +143,7 @@ class Todo {
   function completeTask(index) {
     taskManager.completeTask(index);
     displayTasks();
-    
+    //function to show a task is complete
   }
   
   function removeTask(index) {
